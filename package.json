@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/devgr/groundhog-island/issues"
   },
-  "homepage": "https://github.com/devgr/groundhog-island#readme"
+  "homepage": "https://github.com/devgr/groundhog-island#readme",
+  "dependencies": {
+    "phaser-ce": "^2.10.0"
+  }
 }
