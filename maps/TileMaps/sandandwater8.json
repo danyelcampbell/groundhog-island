@@ -1,0 +1,12 @@
+{ "columns":3,
+ "image":"Sand and Water (5).png",
+ "imageheight":128,
+ "imagewidth":96,
+ "margin":0,
+ "name":"sandandwater7",
+ "spacing":0,
+ "tilecount":12,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}
