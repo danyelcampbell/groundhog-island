@@ -27,9 +27,12 @@ window.export('create', function(game, init) {
 		right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
 	};
 
-    //// grab initial positions
-    //init.camX = game.camera.x;
-    //init.camY = game.camera.y;
-    //init.playerX = this.player.x;
-    //init.playerY = this.player.y;
+    // Add the tilemap
+    this.map = game.add.tilemap('tilemap');
+    this.map.addTilesetImage('sandandwater7', 'sandandwater');
+    this.foregroundLayer = this.map.createLayer('Tile Layer 1');
+    this.foregroundLayer.scale.setTo(4, 4);
+    this.foregroundLayer.resizeWorld();
+    //this.map.setCollisionByExclusion([], true, this.foregroundLayer);
+    this.map.setCollisionBetween(20,100);
 });
