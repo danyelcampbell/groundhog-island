@@ -1,0 +1,19 @@
+{
+  "name": "groundhog-island",
+  "version": "1.0.0",
+  "description": "Side scrolling escape the island game",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devgr/groundhog-island.git"
+  },
+  "author": "George Darling",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devgr/groundhog-island/issues"
+  },
+  "homepage": "https://github.com/devgr/groundhog-island#readme"
+}

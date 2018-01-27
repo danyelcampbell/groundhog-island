@@ -1,0 +1,16 @@
+window.onload = function() {
+	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
+
+	function preload() {
+	}
+
+	function create() {
+	}
+
+	function update() {
+	}
+
+	function render() {
+		game.debug.text('Hello Groundhog Island', 25, 25);
+	}
+};
