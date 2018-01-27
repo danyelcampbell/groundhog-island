@@ -1,16 +1,21 @@
 window.onload = function() {
-	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
+	window.require(['preload', 'create', 'update', 'render'], function(preload, create, update, render) {
+		function preloader() {
+			preload(game);
+		}
 
-	function preload() {
-	}
+		function creater() {
+			create(game);
+		}
 
-	function create() {
-	}
+		function updater() {
+			update(game);
+		}
 
-	function update() {
-	}
-
-	function render() {
-		game.debug.text('Hello Groundhog Island', 25, 25);
-	}
+		function renderer() {
+			render(game);
+			
+		}
+		var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preloader, create: creater, update: updater, render: renderer });
+	});
 };
