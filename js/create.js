@@ -43,16 +43,26 @@ window.export("create", function(game) {
 
 	game.physics.arcade.enable(this.plane);
 
-	// Shark -- swimming out to sea -- to be altered.
-	this.shark = game.add.sprite(game.world.centerX + 2300, game.world.centerY + 380, "swimmingshark");
+	// Swimming Shark
+	this.shark = game.add.sprite( 2500,  890, "swimmingshark");
 	this.shark.anchor.setTo(0.5, 0.5);
 	this.shark.scale.setTo(3, 3);
 	this.shark.animations.add("swimmingshark");
 	this.shark.animations.play("swimmingshark", 4, true);
 	game.physics.arcade.enable(this.shark);
 
-	
-	
+	this.deathCheck = true;
+
+	// Hungry Shark
+
+	this.hungryshark = game.add.sprite(2550,  895, "hungryshark");
+	this.hungryshark.anchor.setTo(0.5, 0.5);
+	this.hungryshark.scale.setTo(3, 3);
+	this.hungryshark.animations.add("hungryshark");
+	this.hungryshark.animations.play("hungryshark",1 , true);
+	game.physics.arcade.enable(this.hungryshark);
+
+	this.hungryshark.visible = false;
 	
 	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
 	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, "player");

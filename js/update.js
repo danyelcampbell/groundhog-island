@@ -11,29 +11,33 @@ window.export("update", function(game){
 		}
 		this.isJumping = true;
 	}
+
+	if ((this.player.x >= 2300) && (this.player.x <= 2400)) // player goes to far out to sea
+	{
+		
+		
+		// make hungry shark animation show.
+		this.shark.visible = false;
+		var something = this.hungryshark.visible ? this.hungryshark.visible = true : this.hungryshark.visible = true ; 
+		// player die
+		this.player.visible = false;
+		//deathchecker(); dead? restart
+		if(this.deathCheck){ 
+			this.deathCheck = false;
+			setTimeout(function() {
+			// game over
+			// TODO: Add game over screen
+				game.state.start("MainGame");
+			}, 5000);
+		}
+			
+	}
+
 	if(this.input.up.isUp) {
 		// TODO: Only stop jumping once back on ground
 		this.isJumping = false;
 	}
-/*
-	if ((this.player.x >= 2300) || (this.player.x <= 2400)) // player goes to far out to sea
-	{
-		// make hungry shark animation show.
-		
-		this.hungryshark = game.add.sprite(game.world.centerX = 2300, game.world.centerY + 380, "sharkdeath")
-		this.hungryshark.anchor.setTo(0.5, 0.5);
-		this.hungryshark.scale.setTo(3, 3);
-		this.hungryshark.animations.add("sharkattack");
-		this.hungryshark.animations.play("sharkattack", 4, true);
-		game.physics.arcade.enable(this.hungryshark);
-		
-		
 
-		//player die
-
-		this.player.visibility === false; 
-	}
-*/
 
 	if(this.input.left.isDown) { // check for the left key being pressed
 		let scale = this.player.scale;
