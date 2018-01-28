@@ -1,5 +1,5 @@
 window.onload = function() {
-	window.require(['preload', 'create', 'update', 'render', 'CameraMover'], function(preload, create, update, render, CameraMover) {
+	window.require(['preload', 'create', 'update', 'render', 'CameraMover', 'PlaneInteraction'], function(preload, create, update, render, CameraMover, PlaneInteraction) {
 		var init = {
 			screenWidth: 800,
 			screenHeight: 600,
@@ -20,6 +20,7 @@ window.onload = function() {
 		function updater() {
 			update.call(gameObjects, game);
 			cameraMover.smoothCameraMove();
+			planeInteraction.update();
 		}
 
 		function renderer() {
@@ -28,6 +29,7 @@ window.onload = function() {
 		}
 		var game = new Phaser.Game(init.screenWidth, init.screenHeight, Phaser.AUTO, '', { preload: preloader, create: creator, update: updater, render: renderer }, false, false);
 		var cameraMover = new CameraMover(init, gameObjects, game);
-		Phaser.Canvas.setSmoothingEnabled(game.context, false);
+		var planeInteraction = new PlaneInteraction(gameObjects, game);
+		//Phaser.Canvas.setSmoothingEnabled(game.context, false);
 	});
 };

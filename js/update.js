@@ -1,4 +1,5 @@
 window.export('update', function(game){
+	var self = this;
 	game.physics.arcade.collide(this.player, this.platforms);
 	game.physics.arcade.collide(this.player, this.foregroundLayer);
 
@@ -18,13 +19,16 @@ window.export('update', function(game){
 			scale.x = -scale.x;
 		}
 		this.player.body.x -= 5; // make the player go left (left is smaller x values)
-	}
-	if(this.input.right.isDown) { // check for the right key being pressed
+		this.player.animations.play('walk', 10, true);
+	} else if(this.input.right.isDown) { // check for the right key being pressed
 		let scale = this.player.scale;
 		if(scale.x < 0) {
 			scale.x = -scale.x;
 		}
 		this.player.body.x += 5; // make the player go right (right is bigger x values)
+		this.player.animations.play('walk', 10, true);
+	} else {
+		this.player.animations.stop('walk');
 	}
 });
 

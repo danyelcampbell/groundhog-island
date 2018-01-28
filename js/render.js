@@ -1,3 +1,10 @@
 window.export('render', function(game){
-	game.debug.text('Hello Groundhog Island', 25, 25);
+	var lineStart = 430;
+	for(var i = 0; i < this.dialogLines.length; i++) {
+		game.debug.text(this.dialogLines[i], 190, lineStart);
+		lineStart += 25;
+	}
+
+	//game.debug.body(this.box1);
+	//game.debug.body(this.box2);
 });
