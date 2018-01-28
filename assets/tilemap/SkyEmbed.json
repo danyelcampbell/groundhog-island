@@ -1,0 +1,12 @@
+{ "columns":1,
+ "image":"Sky.png",
+ "imageheight":224,
+ "imagewidth":32,
+ "margin":0,
+ "name":"Sky",
+ "spacing":0,
+ "tilecount":7,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}
