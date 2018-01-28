@@ -22,6 +22,7 @@ window.export('update', function(game){
 		}
 		this.player.body.x -= 5; // make the player go left (left is smaller x values)
 		this.player.animations.play('walk', 10, true);
+		this.footsteps.resume();
 	} else if(this.input.right.isDown) { // check for the right key being pressed
 		let scale = this.player.scale;
 		if(scale.x < 0) {
@@ -29,8 +30,10 @@ window.export('update', function(game){
 		}
 		this.player.body.x += 5; // make the player go right (right is bigger x values)
 		this.player.animations.play('walk', 10, true);
+		this.footsteps.resume();
 	} else {
 		this.player.animations.stop('walk');
+		this.footsteps.pause();
 	}
 });
 
