@@ -1,4 +1,4 @@
-window.export('update', function(game){
+window.export("update", function(game){
 	var self = this;
 	game.physics.arcade.collide(this.player, this.platforms, function(){
 		self.isOnGround = true;
@@ -15,6 +15,26 @@ window.export('update', function(game){
 		// TODO: Only stop jumping once back on ground
 		this.isJumping = false;
 	}
+/*
+	if ((this.player.x >= 2300) || (this.player.x <= 2400)) // player goes to far out to sea
+	{
+		// make hungry shark animation show.
+		
+		this.hungryshark = game.add.sprite(game.world.centerX = 2300, game.world.centerY + 380, "sharkdeath")
+		this.hungryshark.anchor.setTo(0.5, 0.5);
+		this.hungryshark.scale.setTo(3, 3);
+		this.hungryshark.animations.add("sharkattack");
+		this.hungryshark.animations.play("sharkattack", 4, true);
+		game.physics.arcade.enable(this.hungryshark);
+		
+		
+
+		//player die
+
+		this.player.visibility === false; 
+	}
+*/
+
 	if(this.input.left.isDown) { // check for the left key being pressed
 		let scale = this.player.scale;
 		if(scale.x > 0) {

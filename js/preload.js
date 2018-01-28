@@ -13,5 +13,5 @@ window.export('preload', function(game){
 	game.load.image('trees', 'assets/tilemap/Palm Tree.png');
 	game.load.spritesheet('plane', 'assets/sprites/Plane Crash.png', 64, 64, 2);
 	game.load.image('dialog', 'assets/sprites/Text Box.png');
-
+	game.load.spritesheet('swimmingshark', 'assets/sprites/SharkAttack.png', 70, 70, 14);
 });
