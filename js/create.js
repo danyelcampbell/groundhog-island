@@ -65,4 +65,16 @@ window.export('create', function(game) {
     this.dialog.scale.setTo(20, 20);
     this.dialog.visible = false;
     this.dialogLines = [];
+
+    // background sound, always going
+	var seagulls = game.add.audio('wavesandseagulls');
+	seagulls.loopFull(); // plays and loops
+	seagulls.volume = 0.5;
+	//seagulls.play();
+
+	// footstep sound
+	this.footsteps = game.add.audio('footsteps');
+	this.footsteps.loop = true;
+	this.footsteps.play();
+	this.footsteps.pause();
 });
