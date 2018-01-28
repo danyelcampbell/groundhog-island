@@ -30,6 +30,7 @@ window.onload = function() {
 		var game = new Phaser.Game(init.screenWidth, init.screenHeight, Phaser.AUTO, '', { preload: preloader, create: creator, update: updater, render: renderer }, false, false);
 		var cameraMover = new CameraMover(init, gameObjects, game);
 		var planeInteraction = new PlaneInteraction(gameObjects, game);
+		var waves;
 		//Phaser.Canvas.setSmoothingEnabled(game.context, false);
 	});
 };

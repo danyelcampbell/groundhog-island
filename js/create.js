@@ -1,4 +1,4 @@
-window.export('create', function(game) {
+window.export("create", function(game) {
 	game.world.setBounds(0, 0, 1000, 1000);
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -9,41 +9,49 @@ window.export('create', function(game) {
 	//this.background.scale.setTo(50, 5);
 
 	this.platforms = game.add.physicsGroup();
-    // Add the tilemap
-    this.map = game.add.tilemap('tilemap');
-    this.map.addTilesetImage('Sky', 'sky');
-    this.map.addTilesetImage('Clouds', 'clouds');
-    this.backgroundLayer = this.map.createLayer('background');
-    this.backgroundLayer.scale.setTo(4, 4);
-    this.map.addTilesetImage('swg', 'sandandwater');
-    this.foregroundLayer = this.map.createLayer('Tile Layer 1');
-    this.foregroundLayer.scale.setTo(4, 4);
+	// Add the tilemap
+	this.map = game.add.tilemap("tilemap");
+	this.map.addTilesetImage("Sky", "sky");
+	this.map.addTilesetImage("Clouds", "clouds");
+	this.backgroundLayer = this.map.createLayer("background");
+	this.backgroundLayer.scale.setTo(4, 4);
+	this.map.addTilesetImage("swg", "sandandwater");
+	this.foregroundLayer = this.map.createLayer("Tile Layer 1");
+	this.foregroundLayer.scale.setTo(4, 4);
 
 
-    // Plane
-    this.plane = game.add.sprite(game.world.centerX - 200, game.world.centerY + 300, 'plane');
+	// Plane
+	this.plane = game.add.sprite(game.world.centerX - 200, game.world.centerY + 300, "plane");
 	this.plane.anchor.setTo(0.5, 0.5);
 	this.plane.scale.setTo(3, 3);
-	this.plane.animations.add('flames');
-	this.plane.animations.play('flames', 10, true);
+	this.plane.animations.add("flames");
+	this.plane.animations.play("flames", 10, true);
 	game.physics.arcade.enable(this.plane);
 
+	// Shark
+	this.shark = game.add.sprite(game.world.centerX + 2300, game.world.centerY + 380, "sharkattack");
+	this.shark.anchor.setTo(0.5, 0.5);
+	this.shark.scale.setTo(3, 3);
+	this.shark.animations.add("sharkattack");
+	this.shark.animations.play("sharkattack", 4, true);
+	game.physics.arcade.enable(this.shark);
+
 	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
-	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player');
+	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, "player");
 	this.player.anchor.setTo(0.5, 0.5);
 	this.player.scale.setTo(4, 4);
 	game.physics.arcade.enable(this.player);
 	this.player.body.gravity.y = 500;
 	this.player.body.drag = new Phaser.Point(200,0);
 	this.player.body.collideWorldBounds = true;
-	this.player.animations.add('walk');
+	this.player.animations.add("walk");
 
 
 	// platforms
-	this.box1 = this.platforms.create(game.world.centerX - 200, game.world.centerY + 405, 'box');
+	this.box1 = this.platforms.create(game.world.centerX - 200, game.world.centerY + 405, "box");
 	this.box1.anchor.setTo(0.5, 0.5);
 	this.box1.scale.setTo(5000, 10);
-	this.platforms.setAll('body.immovable', true);
+	this.platforms.setAll("body.immovable", true);
 
 	// Enable input
 	this.input = {
@@ -52,12 +60,18 @@ window.export('create', function(game) {
 		right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
 	};
 
-    this.foregroundLayer.resizeWorld();
+	this.foregroundLayer.resizeWorld();
 
-    this.dialog = game.add.sprite(400, 500, 'dialog');
-    this.dialog.anchor.setTo(0.5, 0.5);
-    this.dialog.fixedToCamera = true;
-    this.dialog.scale.setTo(20, 20);
-    this.dialog.visible = false;
-    this.dialogLines = [];
+	this.dialog = game.add.sprite(400, 500, "dialog");
+	this.dialog.anchor.setTo(0.5, 0.5);
+	this.dialog.fixedToCamera = true;
+	this.dialog.scale.setTo(20, 20);
+	this.dialog.visible = false;
+	this.dialogLines = [];
+
+	// Music code
+
+	this.waves = game.add.audio('sfx001');
+
+	waves.play();
 });
