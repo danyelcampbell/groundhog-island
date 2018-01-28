@@ -30,6 +30,36 @@ window.export('create', function(game) {
 	this.plane.animations.play('flames', 10, true);
 	game.physics.arcade.enable(this.plane);
 
+	// Swimming Shark
+	this.shark = game.add.sprite( 2500,  890, "swimmingshark");
+	this.shark.anchor.setTo(0.5, 0.5);
+	this.shark.scale.setTo(3, 3);
+	this.shark.animations.add("swimmingshark");
+	this.shark.animations.play("swimmingshark", 4, true);
+	game.physics.arcade.enable(this.shark);
+
+	this.deathCheck = true;
+
+	/*this.deathCheck = () => { // too verbose.
+
+		if(this.player.visible === false) { //death state
+			this.deathvariable = true;
+		}
+
+		return this.deathvariable;
+	};
+		*/
+	// Hungry Shark
+
+	this.hungryshark = game.add.sprite(2550,  895, "hungryshark");
+	this.hungryshark.anchor.setTo(0.5, 0.5);
+	this.hungryshark.scale.setTo(3, 3);
+	this.hungryshark.animations.add("hungryshark");
+	this.hungryshark.animations.play("hungryshark",1 , true);
+	game.physics.arcade.enable(this.hungryshark);
+
+	this.hungryshark.visible = false;
+	
 	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
 	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player');
 	this.player.anchor.setTo(0.5, 0.5);

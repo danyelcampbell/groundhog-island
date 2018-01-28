@@ -1,4 +1,4 @@
-window.export('update', function(game){
+window.export("update", function(game){
 	var self = this;
 	game.physics.arcade.collide(this.player, this.platforms, function(){
 		self.isOnGround = true;
@@ -11,6 +11,28 @@ window.export('update', function(game){
 		}
 		this.isJumping = true;
 	}
+
+	if ((this.player.x >= 2300) && (this.player.x <= 2400)) // player goes to far out to sea
+	{
+		
+		
+		// make hungry shark animation show.
+		this.shark.visible = false;
+		this.hungryshark.visible ? this.hungryshark.visible = true : this.hungryshark.visible = true ; 
+		// player die
+		this.player.visible = false;
+		//deathchecker(); dead? restart
+		if(this.deathCheck){ 
+			this.deathCheck = false;
+			setTimeout(function() {
+			// game over
+			// TODO: Add game over screen
+				game.state.start("MainGame");
+			}, 5000);
+		}
+			
+	}
+
 	if(this.input.up.isUp) {
 		// TODO: Only stop jumping once back on ground
 		this.isJumping = false;
@@ -21,16 +43,16 @@ window.export('update', function(game){
 			scale.x = -scale.x;
 		}
 		this.player.body.x -= 5; // make the player go left (left is smaller x values)
-		this.player.animations.play('walk', 10, true);
+		this.player.animations.play("walk", 10, true);
 	} else if(this.input.right.isDown) { // check for the right key being pressed
 		let scale = this.player.scale;
 		if(scale.x < 0) {
 			scale.x = -scale.x;
 		}
 		this.player.body.x += 5; // make the player go right (right is bigger x values)
-		this.player.animations.play('walk', 10, true);
+		this.player.animations.play("walk", 10, true);
 	} else {
-		this.player.animations.stop('walk');
+		this.player.animations.stop("walk");
 	}
 });
 
