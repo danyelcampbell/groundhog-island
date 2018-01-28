@@ -1,5 +1,6 @@
 window.export('preload', function(game){
 	game.load.spritesheet('player', 'assets/sprites/PrisonerWalking.png', 32, 32, 8);
+	game.load.spritesheet('bomb', 'assets/sprites/nuke.png', 32, 32, 2);
 	game.load.image('box', 'assets/sprites/empty.png');
 	game.load.tilemap('tilemap', 'assets/tilemap/Map3.json', null, Phaser.Tilemap.TILED_JSON);
 	game.load.image('sandandwater', 'assets/tilemap/swg.png');

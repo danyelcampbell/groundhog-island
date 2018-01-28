@@ -6,7 +6,7 @@
 			this.visitedPlane = false;
 			this.isLieOrTruthInput = false;
 			this.isIDInput = false;
-
+			this.isBomb = false;
 		}
 
 		update() {
@@ -17,6 +17,14 @@
 					self.beginInteraction();
 				}
 			}, null, this.game);
+
+			if(this.isBomb) {
+				this.game.physics.arcade.collide(this.bombObj, this.gameObjects.platforms, function() {
+					self.isBomb = false;
+					self.bombObj.body.gravity.y = 0;
+					self.bombObj.animations.currentFrame = 1;
+				});
+			}
 
 			if(this.isLieOrTruthInput) {
 				let input = this.gameObjects.input;
@@ -75,7 +83,7 @@
 				setTimeout(function(){
 					self.gameObjects.dialogLines.push('... we ummm...');
 					setTimeout(function(){
-						self.gameObjects.dialogLines.push('We crashed landed on an island, but we still');
+						self.gameObjects.dialogLines.push('We crash-landed on an island, but we still');
 						self.gameObjects.dialogLines.push('have control of the prisoner. We need rescue.');
 						setTimeout(function(){
 							self.gameObjects.dialogLines = ["[Radio] I don't recognize your voice."];
@@ -88,7 +96,7 @@
 									self.isIDInput = true;
 								}, 1000);
 							}, 1000);
-						}, 3000);
+						}, 4000);
 					}, 1000);
 				}, 1000);
 			}, 1000);
@@ -106,7 +114,7 @@
 						self.gameObjects.dialogLines.push('IMMEDIATELY.');
 						setTimeout(function(){
 							self.gameObjects.dialog.visible = false;
-							self.gameObjects.dialogLines = [];
+							self.gameObjects.dialogLines = [''];
 							self.bomb();
 						}, 3000);
 					}, 3000);
@@ -124,16 +132,20 @@
 				setTimeout(function(){
 					// conversation over, hide dialog
 					self.gameObjects.dialog.visible = false;
-					self.gameObjects.dialogLines = [];
+					self.gameObjects.dialogLines = [''];
 					// TODO: trigger marshals arriving soon
 				}, 3000);
 			}, 2000);
 		}
 
 		bomb() {
-			//this.bombObj = this.game.add.sprite(this.gameObjects.player.x, this.gameObjects.player.y - 200, 'bomb');
-			//this.game.physics.arcade.enable(this.bombObj);
-			//this.bombObj.body.gravity.y = 500;
+			this.isBomb = true;
+			this.bombObj = this.game.add.sprite(this.gameObjects.player.x, this.gameObjects.player.y - 500, 'bomb');
+			this.bombObj.scale.x = 3;
+			this.bombObj.scale.y = 3;
+			this.bombObj.animations.currentFrame = 0;
+			this.game.physics.arcade.enable(this.bombObj);
+			this.bombObj.body.gravity.y = 500;
 		}
 	}
 	window.export('PlaneInteraction', PlaneInteraction);
