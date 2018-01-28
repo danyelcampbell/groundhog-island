@@ -8,7 +8,7 @@ window.export('preload', function(game){
 	game.load.image('sandandwater', 'assets/tilemap/swg.png');
 	game.load.image('sky', 'assets/tilemap/Sky.png');
 	game.load.image('clouds', 'assets/tilemap/Clouds.png');
-	game.load.spritesheet('plane', 'assets/sprites/Plane Crash.png', 150, 150, 4);
+	game.load.spritesheet('plane', 'assets/sprites/Plane Crash.png', 64, 64, 2);
 	game.load.image('dialog', 'assets/sprites/Text Box.png');
 
 });

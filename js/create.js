@@ -23,11 +23,11 @@ window.export('create', function(game) {
 
 
     // Plane
-    this.plane = game.add.sprite(game.world.centerX - 200, game.world.centerY + 300, 'plane');
+    this.plane = game.add.sprite(game.world.centerX - 300, game.world.centerY + 400, 'plane');
 	this.plane.anchor.setTo(0.5, 0.5);
-	this.plane.scale.setTo(3, 3);
+	this.plane.scale.setTo(6, 6);
 	this.plane.animations.add('flames');
-	this.plane.animations.play('flames', 10, true);
+	this.plane.animations.play('flames', 5, true);
 	game.physics.arcade.enable(this.plane);
 
 	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
