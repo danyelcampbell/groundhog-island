@@ -1,27 +1,27 @@
-window.export('create', function(game, init) {
+window.export('create', function(game) {
 	game.world.setBounds(0, 0, 1000, 1000);
 	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	// Background color (change this)
 	game.stage.backgroundColor = "#CCCCCC";
-	this.background = game.add.sprite(game.world.centerX + 100, game.world.centerY, 'sky');
-	this.background.anchor.setTo(0.5, 0.5);
-	this.background.scale.setTo(50, 5);
+	//this.background = game.add.sprite(game.world.centerX + 100, game.world.centerY, 'sky');
+	//this.background.anchor.setTo(0.5, 0.5);
+	//this.background.scale.setTo(50, 5);
 
 	this.platforms = game.add.physicsGroup();
     // Add the tilemap
     this.map = game.add.tilemap('tilemap');
-    this.map.addTilesetImage('sandandwater7', 'sandandwater');
-    this.map.setCollisionBetween(20, 100);
-    var layer = this.map.createLayer('Tile Layer 1');
-	game.physics.arcade.enable(layer);
-    this.foregroundLayer = layer;
-
+    this.map.addTilesetImage('Sky', 'sky');
+    this.map.addTilesetImage('Clouds', 'clouds');
+    this.backgroundLayer = this.map.createLayer('background');
+    this.backgroundLayer.scale.setTo(4, 4);
+    this.map.addTilesetImage('swg', 'sandandwater');
+    this.foregroundLayer = this.map.createLayer('Tile Layer 1');
     this.foregroundLayer.scale.setTo(4, 4);
-    //this.map.setCollisionByExclusion([], true, this.foregroundLayer);
+
 
     // Plane
-    this.plane = game.add.sprite(game.world.centerX - 400, game.world.centerY + 250, 'plane');
+    this.plane = game.add.sprite(game.world.centerX - 200, game.world.centerY + 300, 'plane');
 	this.plane.anchor.setTo(0.5, 0.5);
 	this.plane.scale.setTo(3, 3);
 	this.plane.animations.add('flames');
@@ -29,7 +29,7 @@ window.export('create', function(game, init) {
 	game.physics.arcade.enable(this.plane);
 
 	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
-	this.player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
+	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player');
 	this.player.anchor.setTo(0.5, 0.5);
 	this.player.scale.setTo(4, 4);
 	game.physics.arcade.enable(this.player);
@@ -39,12 +39,10 @@ window.export('create', function(game, init) {
 	this.player.animations.add('walk');
 
 
-	this.box1 = this.platforms.create(game.world.centerX - 200, game.world.centerY + 285, 'box');
+	// platforms
+	this.box1 = this.platforms.create(game.world.centerX - 200, game.world.centerY + 405, 'box');
 	this.box1.anchor.setTo(0.5, 0.5);
-	this.box1.scale.setTo(600, 10);
-	this.box2 = this.platforms.create(game.world.centerX + 300, game.world.centerY + 350, 'box');
-	this.box2.anchor.setTo(0.5, 0.5);
-	this.box2.scale.setTo(600, 10);
+	this.box1.scale.setTo(5000, 10);
 	this.platforms.setAll('body.immovable', true);
 
 	// Enable input

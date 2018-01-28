@@ -1,0 +1,12 @@
+{ "columns":46,
+ "image":"Clouds.png",
+ "imageheight":1448,
+ "imagewidth":1500,
+ "margin":0,
+ "name":"Clouds",
+ "spacing":0,
+ "tilecount":2070,
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset"
+}

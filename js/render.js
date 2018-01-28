@@ -6,5 +6,4 @@ window.export('render', function(game){
 	}
 
 	//game.debug.body(this.box1);
-	//game.debug.body(this.box2);
 });

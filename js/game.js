@@ -14,7 +14,7 @@ window.onload = function() {
 		}
 
 		function creator() {
-			create.call(gameObjects, game, init);
+			create.call(gameObjects, game);
 		}
 
 		function updater() {

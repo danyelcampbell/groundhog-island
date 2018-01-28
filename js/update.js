@@ -1,7 +1,6 @@
 window.export('update', function(game){
 	var self = this;
 	game.physics.arcade.collide(this.player, this.platforms);
-	game.physics.arcade.collide(this.player, this.foregroundLayer);
 
 	if(this.input.up.isDown) { // check for the up key being pressed
 		if(!this.isJumping) {
