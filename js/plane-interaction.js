@@ -48,32 +48,17 @@
 			}
 		}
 
-<<<<<<< HEAD
-		
-
-
-		interact() {
-=======
 		beginInteraction() {
->>>>>>> origin/master
 			let self = this;
 			setTimeout(function(){
 				self.gameObjects.dialog.visible = true;
-				self.gameObjects.dialogLines = ["[Radio garble]"];
+				self.gameObjects.dialogLines = ['[Radio garble]'];
 				setTimeout(function(){
-<<<<<<< HEAD
-					self.gameObjects.dialogLines = ["FLIGHT PAPA TANGO SIERRA 18 REPORT!"];
-=======
 					self.gameObjects.dialogLines = ['[Radio] FLIGHT PAPA TANGO SIERRA 18 REPORT!'];
->>>>>>> origin/master
 					setTimeout(function(){
-						self.gameObjects.dialogLines.push("FLIGHT PAPA TANGO SIERRA 18,");
-						self.gameObjects.dialogLines.push("THIS IS THE WARDEN AT SUPER SECRET PRISON.");
+						self.gameObjects.dialogLines.push('FLIGHT PAPA TANGO SIERRA 18,');
+						self.gameObjects.dialogLines.push('THIS IS THE WARDEN AT SUPER SECRET PRISON.');
 						setTimeout(function(){
-<<<<<<< HEAD
-							self.gameObjects.dialogLines.push("YOU WERE DUE IN AN HOUR AGO!");
-							self.gameObjects.dialogLines.push("WHAT IS GOING ON?!");
-=======
 							self.gameObjects.dialogLines.push('YOU WERE DUE IN AN HOUR AGO!');
 							self.gameObjects.dialogLines.push('WHAT IS GOING ON?!');
 							self.gameObjects.dialogLines.push('');
@@ -82,7 +67,6 @@
 								self.gameObjects.dialogLines.push('2) Tell the truth.');
 								self.isLieOrTruthInput = true;
 							}, 1000);
->>>>>>> origin/master
 						}, 2000);
 					}, 2000);
 				}, 2000);
@@ -179,12 +163,5 @@
 			}, 2000);
 		}
 	}
-<<<<<<< HEAD
-	window.export("PlaneInteraction", PlaneInteraction);
-	setTimeout(function(){
-
-	}, 1000);
-=======
 	window.export('PlaneInteraction', PlaneInteraction);
->>>>>>> origin/master
 })();
