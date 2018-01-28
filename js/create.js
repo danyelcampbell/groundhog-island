@@ -60,7 +60,10 @@ window.export("create", function(game) {
 	this.input = {
 		up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
 		left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
-		right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
+		right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
+		one: game.input.keyboard.addKey(Phaser.Keyboard.ONE),
+		two: game.input.keyboard.addKey(Phaser.Keyboard.TWO),
+		three: game.input.keyboard.addKey(Phaser.Keyboard.THREE),
 	};
 
 	this.foregroundLayer.resizeWorld();
