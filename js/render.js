@@ -1,9 +1,15 @@
 window.export('render', function(game){
-	game.debug.text('x: ' + this.player.x + ' y: ' + this.player.y, 25, 25);
+	//game.debug.text('x: ' + this.player.x + ' y: ' + this.player.y, 25, 25);
 
-	var lineStart = 426;
-	for(var i = 0; i < this.dialogLines.length; i++) {
+	var lineStart = 40;
+	for(let i = 0; i < this.dialogLines.length; i++) {
 		game.debug.text(this.dialogLines[i], 190, lineStart);
+		lineStart += 23;
+	}
+
+	lineStart = 465;
+	for(let i = 0; i < this.playerLines.length; i++) {
+		game.debug.text(this.playerLines[i], 190, lineStart);
 		lineStart += 23;
 	}
 

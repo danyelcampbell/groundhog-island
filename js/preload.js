@@ -12,7 +12,9 @@ window.export('preload', function(game){
 	game.load.image('clouds', 'assets/tilemap/Clouds.png');
 	game.load.image('trees', 'assets/tilemap/Palm Tree.png');
 	game.load.spritesheet('plane', 'assets/sprites/Plane Crash.png', 64, 64, 2);
-	game.load.image('dialog', 'assets/sprites/Text Box.png');
+	game.load.spritesheet('waterplane', 'assets/sprites/Water Plane.png', 200, 200, 4);
+	game.load.image('dialog', 'assets/sprites/Box.png');
+	game.load.image('playerresponse', 'assets/sprites/Box2.png');
 	game.load.spritesheet('swimmingshark', 'assets/sprites/SwimmingShark.png', 70, 70, 33); // box
 	game.load.spritesheet('hungryshark', 'assets/sprites/HungryShark.png', 70, 70, 17); // bloody mess
 

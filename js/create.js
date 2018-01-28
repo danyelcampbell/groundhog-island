@@ -35,7 +35,7 @@ window.export("create", function(game) {
 
 
     // Plane
-    this.plane = game.add.sprite(game.world.centerX - 300, game.world.centerY + 400, 'plane');
+    this.plane = game.add.sprite(game.world.centerX - 310, game.world.centerY + 340, 'plane');
 	this.plane.anchor.setTo(0.5, 0.5);
 	this.plane.scale.setTo(6, 6);
 	this.plane.animations.add('flames');
@@ -93,6 +93,7 @@ window.export("create", function(game) {
 	// Enable input
 	this.input = {
 		up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
+		down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
 		left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
 		right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
 		one: game.input.keyboard.addKey(Phaser.Keyboard.ONE),
@@ -102,19 +103,19 @@ window.export("create", function(game) {
 
 	this.foregroundLayer.resizeWorld();
 
-	this.dialog = game.add.sprite(400, 500, "dialog");
+	this.dialog = game.add.sprite(400, 125, "dialog");
 	this.dialog.anchor.setTo(0.5, 0.5);
 	this.dialog.fixedToCamera = true;
-	this.dialog.scale.setTo(20, 20);
+	this.dialog.scale.setTo(1.5, 1.2);
 	this.dialog.visible = false;
-	this.dialogLines = [];
+	this.dialogLines = [''];
 
-    this.dialog = game.add.sprite(400, 500, 'dialog');
-    this.dialog.anchor.setTo(0.5, 0.5);
-    this.dialog.fixedToCamera = true;
-    this.dialog.scale.setTo(20, 20);
-    this.dialog.visible = false;
-    this.dialogLines = [];
+    this.playerResponse = game.add.sprite(400, 500, 'playerresponse');
+    this.playerResponse.anchor.setTo(0.5, 0.5);
+    this.playerResponse.fixedToCamera = true;
+    this.playerResponse.scale.setTo(1.5, 1.5);
+    this.playerResponse.visible = false;
+    this.playerLines = [''];
 
     // background sound, always going
 	var seagulls = game.add.audio('wavesandseagulls');
