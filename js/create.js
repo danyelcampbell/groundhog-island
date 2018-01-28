@@ -15,6 +15,8 @@ window.export('create', function(game) {
     this.map.addTilesetImage('Clouds', 'clouds');
     this.backgroundLayer = this.map.createLayer('background');
     this.backgroundLayer.scale.setTo(4, 4);
+    this.backgroundLayer.scrollFactorX = 0.3;
+    this.backgroundLayer.scrollFactorY = 0.5;
     this.map.addTilesetImage('swg', 'sandandwater');
     this.foregroundLayer = this.map.createLayer('Tile Layer 1');
     this.foregroundLayer.scale.setTo(4, 4);
