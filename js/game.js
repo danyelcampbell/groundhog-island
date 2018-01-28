@@ -1,5 +1,5 @@
 window.onload = function() {
-	window.require(['preload', 'create', 'update', 'render', 'CameraMover', 'PlaneInteraction'], function(preload, create, update, render, CameraMover, PlaneInteraction) {
+	window.require(['preload', 'create', 'update', 'render', 'CameraMover', 'PlaneInteraction', 'FlyAway'], function(preload, create, update, render, CameraMover, PlaneInteraction, FlyAway) {
 		var init = {
 			screenWidth: 800,
 			screenHeight: 600,
@@ -14,7 +14,8 @@ window.onload = function() {
 				this.game = game;
 				this.gameObjects = {};
 				this.cameraMover = new CameraMover(init, this.gameObjects, this.game);
-				this.planeInteraction = new PlaneInteraction(this.gameObjects, this.game);
+				this.flyAway = new FlyAway(this.gameObjects, this.game);
+				this.planeInteraction = new PlaneInteraction(this.gameObjects, this.game, this.flyAway);
 			}
 			preload() {
 				preload.call(this.gameObjects, this.game);
@@ -26,6 +27,7 @@ window.onload = function() {
 				update.call(this.gameObjects, this.game);
 				this.cameraMover.smoothCameraMove();
 				this.planeInteraction.update();
+				this.flyAway.update();
 			}
 			render() {
 				render.call(this.gameObjects, this.game);
