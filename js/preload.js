@@ -10,5 +10,6 @@ window.export('preload', function(game){
 	game.load.image('clouds', 'assets/tilemap/Clouds.png');
 	game.load.spritesheet('plane', 'assets/sprites/Plane Crash.png', 150, 150, 4);
 	game.load.image('dialog', 'assets/sprites/Text Box.png');
+	game.load.spritesheet('native', 'assets/sprites/Native.png', 32, 32, 7);
 
 });

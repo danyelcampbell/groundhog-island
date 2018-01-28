@@ -3,6 +3,7 @@
 		constructor(gameObjects, game) {
 			this.gameObjects = gameObjects;
 			this.game = game;
+			//false flags when turned to true, will prompt some action
 			this.visitedPlane = false;
 			this.isLieOrTruthInput = false;
 			this.isIDInput = false;
@@ -13,8 +14,8 @@
 			let self = this;
 			this.game.physics.arcade.overlap(this.gameObjects.player, this.gameObjects.plane, function() {
 				if(!self.visitedPlane) {
-					self.visitedPlane = true;
-					self.beginInteraction();
+					self.visitedPlane = true; //flag turned to true
+					self.beginInteraction(); //starts interaction
 				}
 			}, null, this.game);
 
@@ -27,13 +28,13 @@
 			if(this.isLieOrTruthInput) {
 				let input = this.gameObjects.input;
 				if(input.one.isDown) {
-					this.isLieOrTruthInput = false;
+					this.isLieOrTruthInput = false; //will not prompt an action
 					this.lie();
 				} else if(input.two.isDown) {
-					this.isLieOrTruthInput = false;
+					this.isLieOrTruthInput = false; //once we get bomb animation, this will turn to true
 					this.truth();
 				}
-			} else if(this.isIDInput) {
+			} else if(this.isIDInput) { //all of these are lies, will not prompt anything but continue the convo
 				let input = this.gameObjects.input;
 				if(input.one.isDown) {
 					this.isIDInput = false;
@@ -48,7 +49,7 @@
 			}
 		}
 
-		beginInteraction() {
+		beginInteraction() { //all this shit is the text
 			let self = this;
 			setTimeout(function(){
 				self.gameObjects.dialog.visible = true;
@@ -73,7 +74,7 @@
 			}, 1000);
 		}
 
-		lie() {
+		lie() { //will not get blown up
 			let self = this;
 			self.gameObjects.dialogLines = ['[You clear your throat]', '[You] Yes Warden?'];
 			setTimeout(function(){

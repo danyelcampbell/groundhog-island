@@ -30,6 +30,14 @@ window.export('create', function(game) {
 	this.plane.animations.play('flames', 10, true);
 	game.physics.arcade.enable(this.plane);
 
+	// Native 
+	this.native = game.add.sprite(1000, 840, 'native');
+	this.native.anchor.setTo(0.5, 0.5);
+	this.native.scale.setTo(4, 4);
+	this.native.animations.add('native');
+	this.native.animations.play('native', 7, true);
+	game.physics.arcade.enable(this.native);
+	
 	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
 	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, 'player');
 	this.player.anchor.setTo(0.5, 0.5);
@@ -58,7 +66,6 @@ window.export('create', function(game) {
 	};
 
     this.foregroundLayer.resizeWorld();
-
     this.dialog = game.add.sprite(400, 500, 'dialog');
     this.dialog.anchor.setTo(0.5, 0.5);
     this.dialog.fixedToCamera = true;
