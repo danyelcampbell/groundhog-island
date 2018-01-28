@@ -8,28 +8,33 @@ window.onload = function() {
 			playerX: 0,
 			playerY: 0
 		};
-		var gameObjects = {};
-		function preloader() {
-			preload.call(gameObjects, game);
+
+		class MainGame {
+			constructor(game) {
+				this.game = game;
+				this.gameObjects = {};
+				this.cameraMover = new CameraMover(init, this.gameObjects, this.game);
+				this.planeInteraction = new PlaneInteraction(this.gameObjects, this.game);
+			}
+			preload() {
+				preload.call(this.gameObjects, this.game);
+			}
+			create() {
+				create.call(this.gameObjects, this.game);
+			}
+			update() {
+				update.call(this.gameObjects, this.game);
+				this.cameraMover.smoothCameraMove();
+				this.planeInteraction.update();
+			}
+			render() {
+				render.call(this.gameObjects, this.game);
+			}
 		}
 
-		function creator() {
-			create.call(gameObjects, game);
-		}
+		var game = new Phaser.Game(init.screenWidth, init.screenHeight, Phaser.AUTO, '', undefined, false, false);
 
-		function updater() {
-			update.call(gameObjects, game);
-			cameraMover.smoothCameraMove();
-			planeInteraction.update();
-		}
-
-		function renderer() {
-			render.call(gameObjects, game);
-			
-		}
-		var game = new Phaser.Game(init.screenWidth, init.screenHeight, Phaser.AUTO, '', { preload: preloader, create: creator, update: updater, render: renderer }, false, false);
-		var cameraMover = new CameraMover(init, gameObjects, game);
-		var planeInteraction = new PlaneInteraction(gameObjects, game);
-		//Phaser.Canvas.setSmoothingEnabled(game.context, false);
+		game.state.add('MainGame', MainGame);
+		game.state.start('MainGame');
 	});
 };

@@ -20,9 +20,7 @@
 
 			if(this.isBomb) {
 				this.game.physics.arcade.collide(this.bombObj, this.gameObjects.platforms, function() {
-					self.isBomb = false;
-					self.bombObj.body.gravity.y = 0;
-					self.bombObj.animations.currentFrame = 1;
+					self.bombExplode();
 				});
 			}
 
@@ -141,11 +139,28 @@
 		bomb() {
 			this.isBomb = true;
 			this.bombObj = this.game.add.sprite(this.gameObjects.player.x, this.gameObjects.player.y - 500, 'bomb');
+			this.bombObj.anchor.setTo(0.5, 0.5);
+			this.bombObj.animations.add('falling', [0]);
+			this.bombObj.animations.add('explosion', [1]);
 			this.bombObj.scale.x = 3;
 			this.bombObj.scale.y = 3;
-			this.bombObj.animations.currentFrame = 0;
+			this.bombObj.animations.play('falling');
 			this.game.physics.arcade.enable(this.bombObj);
 			this.bombObj.body.gravity.y = 500;
+		}
+
+		bombExplode() {
+			this.isBomb = false;
+			this.bombObj.body.gravity.y = 0;
+			this.bombObj.scale.x = 20;
+			this.bombObj.scale.y = 20;
+			this.bombObj.animations.play('explosion');
+			let self = this;
+			setTimeout(function() {
+				// game over
+				// TODO: Add game over screen
+				self.game.state.start('MainGame');
+			}, 2000);
 		}
 	}
 	window.export('PlaneInteraction', PlaneInteraction);
