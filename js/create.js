@@ -9,16 +9,31 @@ window.export('create', function(game) {
 	//this.background.scale.setTo(50, 5);
 
 	this.platforms = game.add.physicsGroup();
-    // Add the tilemap
+
+    // Add the background
     this.map = game.add.tilemap('tilemap');
-    this.map.addTilesetImage('Sky', 'sky');
-    this.map.addTilesetImage('Clouds', 'clouds');
-    this.backgroundLayer = this.map.createLayer('background');
-    this.backgroundLayer.scale.setTo(4, 4);
-    this.backgroundLayer.scrollFactorX = 0.3;
-    this.backgroundLayer.scrollFactorY = 0.5;
-    this.map.addTilesetImage('swg', 'sandandwater');
-    this.foregroundLayer = this.map.createLayer('Tile Layer 1');
+
+    this.skyMap = game.add.tilemap('tilemapsky');
+    this.skyMap.addTilesetImage('Sky', 'oldsky');
+    this.skyLayer = this.skyMap.createLayer('background');
+	this.skyLayer.scale.setTo(4, 4);
+    this.skyLayer.scrollFactorX = 0.3;
+    this.skyLayer.scrollFactorY = 0.5;
+
+    //this.map.addTilesetImage('SkyLight', 'sky');
+    //this.map.addTilesetImage('Clouds', 'clouds');
+    //this.skyLayer = this.map.createLayer('Sky');
+    //this.skyLayer.scale.setTo(4, 4);
+    //this.skyLayer.scrollFactorX = 0.3;
+    //this.skyLayer.scrollFactorY = 0.5;
+    //this.cloudLayer = this.map.createLayer('Clouds');
+    //this.cloudLayer.scale.setTo(4, 4);
+    //this.cloudLayer.scrollFactorX = 0.3;
+    //this.cloudLayer.scrollFactorY = 0.5;
+
+    // Add the ground
+    this.map.addTilesetImage('Environment2', 'sandandwater');
+    this.foregroundLayer = this.map.createLayer('Ground');
     this.foregroundLayer.scale.setTo(4, 4);
 
 
@@ -41,11 +56,20 @@ window.export('create', function(game) {
 	this.player.animations.add('walk');
 
 
+	// Palm trees in front of player
+	this.map.addTilesetImage('TREE', 'trees');
+	this.treeLayer = this.map.createLayer('Trees');
+	this.treeLayer.scale.setTo(4, 4);
+	this.treeLayer.scrollFactorX = 1.05;
+    this.treeLayer.scrollFactorY = 1;
+
+
 	// platforms
 	this.box1 = this.platforms.create(game.world.centerX - 200, game.world.centerY + 405, 'box');
 	this.box1.anchor.setTo(0.5, 0.5);
 	this.box1.scale.setTo(5000, 10);
 	this.platforms.setAll('body.immovable', true);
+
 
 	// Enable input
 	this.input = {
