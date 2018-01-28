@@ -35,5 +35,14 @@ window.export('update', function(game){
 		this.player.animations.stop('walk');
 		this.footsteps.pause();
 	}
+
+
+	// cloud parallax
+	this.cloud1.x = game.camera.x / 2 + 500;
+	this.cloud1.y = game.camera.y / 2 + 400;
+	this.cloud2.x = game.camera.x / 2 + 1100;
+	this.cloud2.y = game.camera.y / 2 + 300;
+	this.cloud3.x = game.camera.x / 2 + 1800;
+	this.cloud3.y = game.camera.y / 2 + 450;
 });
 

@@ -20,6 +20,7 @@ window.export('create', function(game) {
     this.skyLayer.scrollFactorX = 0.3;
     this.skyLayer.scrollFactorY = 0.5;
 
+    // Sky and clouds were buggy for some reason, commented out.
     //this.map.addTilesetImage('SkyLight', 'sky');
     //this.map.addTilesetImage('Clouds', 'clouds');
     //this.skyLayer = this.map.createLayer('Sky');
@@ -30,6 +31,16 @@ window.export('create', function(game) {
     //this.cloudLayer.scale.setTo(4, 4);
     //this.cloudLayer.scrollFactorX = 0.3;
     //this.cloudLayer.scrollFactorY = 0.5;
+
+	this.cloud1 = game.add.sprite(500, 400, 'clouds');
+	this.cloud1.anchor.setTo(0.5, 0.5);
+	this.cloud1.scale.setTo(2, 2);
+	this.cloud2 = game.add.sprite(1100, 300, 'clouds');
+	this.cloud2.anchor.setTo(0.5, 0.5);
+	this.cloud2.scale.setTo(2, 2);
+	this.cloud3 = game.add.sprite(1800, 450, 'clouds');
+	this.cloud3.anchor.setTo(0.5, 0.5);
+	this.cloud3.scale.setTo(2, 2);
 
     // Add the ground
     this.map.addTilesetImage('Environment2', 'sandandwater');
