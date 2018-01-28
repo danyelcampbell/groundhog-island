@@ -1,9 +1,12 @@
 window.export('update', function(game){
 	var self = this;
-	game.physics.arcade.collide(this.player, this.platforms);
+	game.physics.arcade.collide(this.player, this.platforms, function(){
+		self.isOnGround = true;
+	});
 
 	if(this.input.up.isDown) { // check for the up key being pressed
-		if(!this.isJumping) {
+		if(!this.isJumping && this.isOnGround) {
+			this.isOnGround = false;
 			this.player.body.velocity.y -= 300; // make the player go up (up is smaller y values)
 		}
 		this.isJumping = true;
