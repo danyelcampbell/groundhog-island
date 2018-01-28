@@ -43,6 +43,14 @@ window.export("create", function(game) {
 
 	game.physics.arcade.enable(this.plane);
 
+	// Native 
+	this.native = game.add.sprite(1000, 840, 'native');
+	this.native.anchor.setTo(0.5, 0.5);
+	this.native.scale.setTo(4, 4);
+	this.native.animations.add('native');
+	this.native.animations.play('native', 7, true);
+	game.physics.arcade.enable(this.native);
+
 	// Swimming Shark
 	this.shark = game.add.sprite( 2500,  890, "swimmingshark");
 	this.shark.anchor.setTo(0.5, 0.5);

@@ -10,6 +10,7 @@ window.export('preload', function(game){
 	game.load.image('sky', 'assets/tilemap/SkyLight.png');
 	game.load.image('oldsky', 'assets/tilemap/Sky.png');
 	game.load.image('clouds', 'assets/tilemap/Clouds.png');
+	game.load.spritesheet('native', 'assets/sprites/Native.png', 32, 32, 7);
 	game.load.image('trees', 'assets/tilemap/Palm Tree.png');
 	game.load.spritesheet('plane', 'assets/sprites/Plane Crash.png', 64, 64, 2);
 	game.load.spritesheet('waterplane', 'assets/sprites/Water Plane.png', 200, 200, 4);

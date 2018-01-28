@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/devgr/groundhog-island#readme",
   "dependencies": {
+    "http-server": "^0.11.1",
     "phaser-ce": "^2.10.0"
   }
 }
