@@ -27,10 +27,10 @@ window.export("update", function(game){
 			if(this.deathCheck){ 
 				this.deathCheck = false;
 				setTimeout(function() {
-				// game over
-				// TODO: Add game over screen
-					//game.state.start("MainGame");
-					window.location.reload();
+					// game over
+					// TODO: Add game over screen
+					game.state.start("MainGame");
+					//window.location.reload();
 				}, 5000);
 			}
 				

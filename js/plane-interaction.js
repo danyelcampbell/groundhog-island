@@ -4,7 +4,7 @@
 			this.gameObjects = gameObjects;
 			this.game = game;
 			//false flags when turned to true, will prompt some action
-			this.visitedPlane = false;
+			this.visitedPlaneLastFrame = false;
 			this.isLieOrTruthInput = false;
 			this.isIDInput = false;
 			this.isBomb = false;
@@ -13,12 +13,22 @@
 
 		update() {
 			let self = this;
+			let currentlyVisitingPlane = false;
 			this.game.physics.arcade.overlap(this.gameObjects.player, this.gameObjects.plane, function() {
-				if(!self.visitedPlane) {
-					self.visitedPlane = true; //flag turned to true
+				currentlyVisistingPlane = true;
+
+				if(!self.visitedPlaneLastFrame) {
 					self.beginInteraction(); //starts interaction
 				}
+
 			}, null, this.game);
+
+			if(currentlyVisistingPlane) {
+				self.visitedPlaneLastFrame = true;
+			} else {
+				self.visitedPlaneLastFrame = false;
+			}
+
 
 			if(this.isBomb) {
 				this.game.physics.arcade.collide(this.bombObj, this.gameObjects.platforms, function() {
@@ -152,8 +162,8 @@
 			this.bombObj.anchor.setTo(0.5, 0.5);
 			this.bombObj.animations.add('falling', [0]);
 			this.bombObj.animations.add('explosion', [1]);
-			this.bombObj.scale.x = 3;
-			this.bombObj.scale.y = 3;
+			this.bombObj.scale.x = 2.5;
+			this.bombObj.scale.y = 2.5;
 			this.bombObj.animations.play('falling');
 			this.game.physics.arcade.enable(this.bombObj);
 			this.bombObj.body.gravity.y = 500;
@@ -169,8 +179,8 @@
 			setTimeout(function() {
 				// game over
 				// TODO: Add game over screen
-				//self.game.state.start('MainGame');
-				window.location.reload();
+				self.game.state.start('MainGame');
+				//window.location.reload();
 			}, 2000);
 		}
 	}
