@@ -15,7 +15,7 @@
 			let self = this;
 			let currentlyVisitingPlane = false;
 			this.game.physics.arcade.overlap(this.gameObjects.player, this.gameObjects.plane, function() {
-				currentlyVisistingPlane = true;
+				currentlyVisitingPlane = true;
 
 				if(!self.visitedPlaneLastFrame) {
 					self.beginInteraction(); //starts interaction
@@ -23,7 +23,7 @@
 
 			}, null, this.game);
 
-			if(currentlyVisistingPlane) {
+			if(currentlyVisitingPlane) {
 				self.visitedPlaneLastFrame = true;
 			} else {
 				self.visitedPlaneLastFrame = false;
@@ -104,7 +104,7 @@
 								setTimeout(function(){
 									self.gameObjects.playerResponse.visible = true;
 									self.gameObjects.playerLines = [];
-									self.gameObjects.playerLines.push('1) 6155847123');
+									self.gameObjects.playerLines.push('1) 4324357262');
 									self.gameObjects.playerLines.push('2) 1234567890');
 									self.gameObjects.playerLines.push('3) 0978544776');
 									self.isIDInput = true;

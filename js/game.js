@@ -14,7 +14,7 @@ window.onload = function() {
 				this.game = game;
 			}
 			preload() {
-				this.game.load.video('vid', 'assets/video/intro-small.mov');
+				this.game.load.video('vid', 'assets/video/intro-small.mp4');
 			}
 			create() {
 				this.vid = this.game.add.video('vid');
