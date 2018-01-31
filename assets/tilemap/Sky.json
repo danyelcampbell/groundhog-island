@@ -1,12 +1,12 @@
 { "columns":1,
- "image":"Sky.png",
+ "image":"SkyLight.png",
  "imageheight":224,
  "imagewidth":32,
  "margin":0,
- "name":"Sky",
+ "name":"SkyLight",
  "spacing":0,
- "tilecount":7,
- "tileheight":32,
+ "tilecount":1,
+ "tileheight":224,
  "tilewidth":32,
  "type":"tileset"
 }

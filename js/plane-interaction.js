@@ -1,23 +1,34 @@
 (function() {
 	class PlaneInteraction{
-		constructor(gameObjects, game) {
+		constructor(gameObjects, game, flyAway) {
 			this.gameObjects = gameObjects;
 			this.game = game;
 			//false flags when turned to true, will prompt some action
-			this.visitedPlane = false;
+			this.visitedPlaneLastFrame = false;
 			this.isLieOrTruthInput = false;
 			this.isIDInput = false;
 			this.isBomb = false;
+			this.flyAway = flyAway;
 		}
 
 		update() {
 			let self = this;
+			let currentlyVisitingPlane = false;
 			this.game.physics.arcade.overlap(this.gameObjects.player, this.gameObjects.plane, function() {
-				if(!self.visitedPlane) {
-					self.visitedPlane = true; //flag turned to true
+				currentlyVisitingPlane = true;
+
+				if(!self.visitedPlaneLastFrame) {
 					self.beginInteraction(); //starts interaction
 				}
+
 			}, null, this.game);
+
+			if(currentlyVisitingPlane) {
+				self.visitedPlaneLastFrame = true;
+			} else {
+				self.visitedPlaneLastFrame = false;
+			}
+
 
 			if(this.isBomb) {
 				this.game.physics.arcade.collide(this.bombObj, this.gameObjects.platforms, function() {
@@ -64,8 +75,8 @@
 							self.gameObjects.dialogLines.push('WHAT IS GOING ON?!');
 							self.gameObjects.dialogLines.push('');
 							setTimeout(function(){
-								self.gameObjects.dialogLines.push('1) Lie and say everything is under control.');
-								self.gameObjects.dialogLines.push('2) Tell the truth.');
+								self.gameObjects.playerResponse.visible = true;
+								self.gameObjects.playerLines = ['1) Lie and say everything is under control.', '2) Tell the truth.'];
 								self.isLieOrTruthInput = true;
 							}, 1000);
 						}, 2000);
@@ -76,6 +87,8 @@
 
 		lie() { //will not get blown up
 			let self = this;
+			self.gameObjects.playerResponse.visible = false;
+			self.gameObjects.playerLines = [''];
 			self.gameObjects.dialogLines = ['[You clear your throat]', '[You] Yes Warden?'];
 			setTimeout(function(){
 				self.gameObjects.dialogLines.push('This is uhhhhh...');
@@ -89,9 +102,11 @@
 							setTimeout(function(){
 								self.gameObjects.dialogLines.push("What is your ID number?");
 								setTimeout(function(){
-									self.gameObjects.dialogLines.push('1) 986744767');
-									self.gameObjects.dialogLines.push('2) 569809854');
-									self.gameObjects.dialogLines.push('3) 097854477');
+									self.gameObjects.playerResponse.visible = true;
+									self.gameObjects.playerLines = [];
+									self.gameObjects.playerLines.push('1) 4324357262');
+									self.gameObjects.playerLines.push('2) 1234567890');
+									self.gameObjects.playerLines.push('3) 0978544776');
 									self.isIDInput = true;
 								}, 1000);
 							}, 1000);
@@ -104,6 +119,8 @@
 		truth() {
 			// get blown up
 			let self = this;
+			self.gameObjects.playerResponse.visible = false;
+			self.gameObjects.playerLines = [''];
 			self.gameObjects.dialogLines = ["[You] The plane crashed, and I'm the only", 'survivor. All of the guards mysteriously', 'went ...missing.'];
 			setTimeout(function(){
 				self.gameObjects.dialogLines.push('[Radio] PRISONER! YOU WILL BE');
@@ -123,6 +140,8 @@
 
 		idNum() {
 			let self = this;
+			self.gameObjects.playerResponse.visible = false;
+			self.gameObjects.playerLines = [''];
 			self.gameObjects.dialogLines = ["[Radio] I can't find your ID in the system."];
 			setTimeout(function(){
 				self.gameObjects.dialogLines.push('We are transmiting your GPS coordinates to');
@@ -132,7 +151,7 @@
 					// conversation over, hide dialog
 					self.gameObjects.dialog.visible = false;
 					self.gameObjects.dialogLines = [''];
-					// TODO: trigger marshals arriving soon
+					self.flyAway.enable();
 				}, 3000);
 			}, 2000);
 		}
@@ -143,8 +162,8 @@
 			this.bombObj.anchor.setTo(0.5, 0.5);
 			this.bombObj.animations.add('falling', [0]);
 			this.bombObj.animations.add('explosion', [1]);
-			this.bombObj.scale.x = 3;
-			this.bombObj.scale.y = 3;
+			this.bombObj.scale.x = 2.5;
+			this.bombObj.scale.y = 2.5;
 			this.bombObj.animations.play('falling');
 			this.game.physics.arcade.enable(this.bombObj);
 			this.bombObj.body.gravity.y = 500;
@@ -161,6 +180,7 @@
 				// game over
 				// TODO: Add game over screen
 				self.game.state.start('MainGame');
+				//window.location.reload();
 			}, 2000);
 		}
 	}
