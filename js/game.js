@@ -1,5 +1,8 @@
 window.onload = function() {
-	window.require(['preload', 'create', 'update', 'render', 'CameraMover', 'PlaneInteraction', 'FlyAway'], function(preload, create, update, render, CameraMover, PlaneInteraction, FlyAway) {
+	'use strict';
+	window.require(['preload', 'create', 'update', 'render', 'CameraMover', 'PlaneInteraction', 'FlyAway'],
+		function(preload, create, update, render, CameraMover, PlaneInteraction, FlyAway) {
+
 		var init = {
 			screenWidth: 800,
 			screenHeight: 600,
@@ -22,46 +25,45 @@ window.onload = function() {
 				this.vid.addToWorld();
 				var self = this;
 				this.vid.onComplete.add(function(){
-					self.game.state.start('MainGame');
+					self.game.state.start('Level1');
 				});
 				this.game.input.onDown.add(function() {
 					self.vid.stop(); // stops playing and cancels the onComplete
-					self.game.state.start('MainGame');
+					self.game.state.start('Level1');
 				});
 			}
 			update() {
 			}
 		}
 
-		class MainGame {
+		class Level1 {
 			constructor(game) {
 				this.game = game;
-				this.gameObjects = {};
+			}
+			preload() {
+				preload(this.game);
+			}
+			create() {
+				this.gameObjects = create(this.game);
 				this.cameraMover = new CameraMover(init, this.gameObjects, this.game);
 				this.flyAway = new FlyAway(this.gameObjects, this.game);
 				this.planeInteraction = new PlaneInteraction(this.gameObjects, this.game, this.flyAway);
 			}
-			preload() {
-				preload.call(this.gameObjects, this.game);
-			}
-			create() {
-				create.call(this.gameObjects, this.game);
-			}
 			update() {
-				update.call(this.gameObjects, this.game);
+				update(this.gameObjects, this.game);
 				this.cameraMover.smoothCameraMove();
 				this.planeInteraction.update();
 				this.flyAway.update();
 			}
 			render() {
-				render.call(this.gameObjects, this.game);
+				render(this.gameObjects, this.game);
 			}
 		}
 
 		var game = new Phaser.Game(init.screenWidth, init.screenHeight, Phaser.AUTO, '', undefined, false, false);
 
 		game.state.add('Intro', Intro);
-		game.state.add('MainGame', MainGame);
+		game.state.add('Level1', Level1);
 		game.state.start('Intro');
 	});
 };

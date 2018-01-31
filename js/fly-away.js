@@ -1,4 +1,5 @@
-(function() {
+window.export('FlyAway', function() {
+	'use strict';
 	class FlyAway{
 		constructor(gameObjects, game) {
 			this.gameObjects = gameObjects;
@@ -50,7 +51,7 @@
 						self.gameObjects.dialogLines = [''];
 						setTimeout(function(){
 							window.location.reload();
-							//self.game.state.start('MainGame');
+							//self.game.state.start('Level1');
 						}, 2000);
 					}, 2000);
 				}, 1000);
@@ -73,5 +74,6 @@
 			}
 		}
 	}
-	window.export('FlyAway', FlyAway);
-})();
+	
+	return FlyAway;
+});

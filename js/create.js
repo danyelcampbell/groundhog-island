@@ -1,139 +1,148 @@
-window.export("create", function(game) {
-	game.world.setBounds(0, 0, 1000, 1000);
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+window.export("create", function(){
+	'use strict';
+	function createFunc(game) {
+		let objs = {};
 
-	game.stage.backgroundColor = "#CCCCCC";
+		game.world.setBounds(0, 0, 1000, 1000);
+		game.physics.startSystem(Phaser.Physics.ARCADE);
 
-	this.platforms = game.add.physicsGroup();
+		game.stage.backgroundColor = "#CCCCCC";
 
-    // Add the background
-    this.map = game.add.tilemap('tilemap');
+		objs.platforms = game.add.physicsGroup();
 
-    this.skyMap = game.add.tilemap('tilemapsky');
-    this.skyMap.addTilesetImage('Sky', 'oldsky');
-    this.skyLayer = this.skyMap.createLayer('background');
-	this.skyLayer.scale.setTo(4, 4);
-    this.skyLayer.scrollFactorX = 0.3;
-    this.skyLayer.scrollFactorY = 0.5;
+		// Add the background
+		objs.map = game.add.tilemap('tilemap');
 
-    // Sky and cloud tilemaps were buggy, removed.
+		objs.skyMap = game.add.tilemap('tilemapsky');
+		objs.skyMap.addTilesetImage('Sky', 'oldsky');
+		objs.skyLayer = objs.skyMap.createLayer('background');
+		objs.skyLayer.scale.setTo(4, 4);
+		objs.skyLayer.scrollFactorX = 0.3;
+		objs.skyLayer.scrollFactorY = 0.5;
 
-	this.cloud1 = game.add.sprite(500, 400, 'clouds');
-	this.cloud1.anchor.setTo(0.5, 0.5);
-	this.cloud1.scale.setTo(2, 2);
-	this.cloud2 = game.add.sprite(1100, 300, 'clouds');
-	this.cloud2.anchor.setTo(0.5, 0.5);
-	this.cloud2.scale.setTo(2, 2);
-	this.cloud3 = game.add.sprite(1800, 450, 'clouds');
-	this.cloud3.anchor.setTo(0.5, 0.5);
-	this.cloud3.scale.setTo(2, 2);
+		// Sky and cloud tilemaps were buggy, removed.
 
-    // Add the ground
-    this.map.addTilesetImage('Environment2', 'sandandwater');
-    this.foregroundLayer = this.map.createLayer('Ground');
-    this.foregroundLayer.scale.setTo(4, 4);
+		objs.cloud1 = game.add.sprite(500, 400, 'clouds');
+		objs.cloud1.anchor.setTo(0.5, 0.5);
+		objs.cloud1.scale.setTo(2, 2);
+		objs.cloud2 = game.add.sprite(1100, 300, 'clouds');
+		objs.cloud2.anchor.setTo(0.5, 0.5);
+		objs.cloud2.scale.setTo(2, 2);
+		objs.cloud3 = game.add.sprite(1800, 450, 'clouds');
+		objs.cloud3.anchor.setTo(0.5, 0.5);
+		objs.cloud3.scale.setTo(2, 2);
 
-
-    // Plane
-    this.plane = game.add.sprite(game.world.centerX - 310, game.world.centerY + 340, 'plane');
-	this.plane.anchor.setTo(0.5, 0.5);
-	this.plane.scale.setTo(6, 6);
-	this.plane.animations.add('flames');
-	this.plane.animations.play('flames', 5, true);
-
-	game.physics.arcade.enable(this.plane);
-
-	// Native 
-	this.native = game.add.sprite(1000, 840, 'native');
-	this.native.anchor.setTo(0.5, 0.5);
-	this.native.scale.setTo(4, 4);
-	this.native.animations.add('native');
-	this.native.animations.play('native', 7, true);
-	game.physics.arcade.enable(this.native);
-
-	// Swimming Shark
-	this.shark = game.add.sprite( 2500,  890, "swimmingshark");
-	this.shark.anchor.setTo(0.5, 0.5);
-	this.shark.scale.setTo(3, 3);
-	this.shark.animations.add("swimmingshark");
-	this.shark.animations.play("swimmingshark", 4, true);
-	game.physics.arcade.enable(this.shark);
-
-	this.deathCheck = true;
-
-	// Hungry Shark
-
-	this.hungryshark = game.add.sprite(2550,  895, "hungryshark");
-	this.hungryshark.anchor.setTo(0.5, 0.5);
-	this.hungryshark.scale.setTo(3, 3);
-	this.hungryshark.animations.add("hungryshark");
-	this.hungryshark.animations.play("hungryshark",1 , true);
-	game.physics.arcade.enable(this.hungryshark);
-
-	this.hungryshark.visible = false;
-	
-	// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
-	this.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, "player");
-	this.player.anchor.setTo(0.5, 0.5);
-	this.player.scale.setTo(4, 4);
-	game.physics.arcade.enable(this.player);
-	this.player.body.gravity.y = 500;
-	this.player.body.drag = new Phaser.Point(200,0);
-	this.player.body.collideWorldBounds = true;
-	this.player.animations.add("walk");
+		// Add the ground
+		objs.map.addTilesetImage('Environment2', 'sandandwater');
+		objs.foregroundLayer = objs.map.createLayer('Ground');
+		objs.foregroundLayer.scale.setTo(4, 4);
 
 
-	// Palm trees in front of player
-	this.map.addTilesetImage('TREE', 'trees');
-	this.treeLayer = this.map.createLayer('Trees');
-	this.treeLayer.scale.setTo(4, 4);
-	this.treeLayer.scrollFactorX = 1.05;
-    this.treeLayer.scrollFactorY = 1;
+		// Plane
+		objs.plane = game.add.sprite(game.world.centerX - 310, game.world.centerY + 340, 'plane');
+		objs.plane.anchor.setTo(0.5, 0.5);
+		objs.plane.scale.setTo(6, 6);
+		objs.plane.animations.add('flames');
+		objs.plane.animations.play('flames', 5, true);
+
+		game.physics.arcade.enable(objs.plane);
+
+		// Native 
+		objs.native = game.add.sprite(1000, 840, 'native');
+		objs.native.anchor.setTo(0.5, 0.5);
+		objs.native.scale.setTo(4, 4);
+		objs.native.animations.add('native');
+		objs.native.animations.play('native', 7, true);
+		game.physics.arcade.enable(objs.native);
+
+		// Swimming Shark
+		objs.shark = game.add.sprite( 2500,  890, "swimmingshark");
+		objs.shark.anchor.setTo(0.5, 0.5);
+		objs.shark.scale.setTo(3, 3);
+		objs.shark.animations.add("swimmingshark");
+		objs.shark.animations.play("swimmingshark", 4, true);
+		game.physics.arcade.enable(objs.shark);
+
+		objs.deathCheck = true;
+
+		// Hungry Shark
+
+		objs.hungryshark = game.add.sprite(2550,  895, "hungryshark");
+		objs.hungryshark.anchor.setTo(0.5, 0.5);
+		objs.hungryshark.scale.setTo(3, 3);
+		objs.hungryshark.animations.add("hungryshark");
+		objs.hungryshark.animations.play("hungryshark",1 , true);
+		game.physics.arcade.enable(objs.hungryshark);
+
+		objs.hungryshark.visible = false;
+		
+		// Add the player sprite, set its anchor to the center, and spawn it in the center (change this)
+		objs.player = game.add.sprite(game.world.centerX + 200, game.world.centerY, "player");
+		objs.player.anchor.setTo(0.5, 0.5);
+		objs.player.scale.setTo(4, 4);
+		game.physics.arcade.enable(objs.player);
+		objs.player.body.gravity.y = 500;
+		objs.player.body.drag = new Phaser.Point(200,0);
+		objs.player.body.collideWorldBounds = true;
+		objs.player.animations.add("walk");
 
 
-	// platforms
-	this.box1 = this.platforms.create(game.world.centerX - 200, game.world.centerY + 405, "box");
-	this.box1.anchor.setTo(0.5, 0.5);
-	this.box1.scale.setTo(5000, 10);
-	this.platforms.setAll("body.immovable", true);
+		// Palm trees in front of player
+		objs.map.addTilesetImage('TREE', 'trees');
+		objs.treeLayer = objs.map.createLayer('Trees');
+		objs.treeLayer.scale.setTo(4, 4);
+		objs.treeLayer.scrollFactorX = 1.05;
+		objs.treeLayer.scrollFactorY = 1;
 
 
-	// Enable input
-	this.input = {
-		up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
-		down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
-		left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
-		right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
-		one: game.input.keyboard.addKey(Phaser.Keyboard.ONE),
-		two: game.input.keyboard.addKey(Phaser.Keyboard.TWO),
-		three: game.input.keyboard.addKey(Phaser.Keyboard.THREE),
-	};
+		// platforms
+		objs.box1 = objs.platforms.create(game.world.centerX - 200, game.world.centerY + 405, "box");
+		objs.box1.anchor.setTo(0.5, 0.5);
+		objs.box1.scale.setTo(5000, 10);
+		objs.platforms.setAll("body.immovable", true);
 
-	this.foregroundLayer.resizeWorld();
 
-	this.dialog = game.add.sprite(400, 125, "dialog");
-	this.dialog.anchor.setTo(0.5, 0.5);
-	this.dialog.fixedToCamera = true;
-	this.dialog.scale.setTo(1.5, 1.2);
-	this.dialog.visible = false;
-	this.dialogLines = [''];
+		// Enable input
+		objs.input = {
+			up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
+			down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
+			left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
+			right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
+			one: game.input.keyboard.addKey(Phaser.Keyboard.ONE),
+			two: game.input.keyboard.addKey(Phaser.Keyboard.TWO),
+			three: game.input.keyboard.addKey(Phaser.Keyboard.THREE),
+		};
 
-    this.playerResponse = game.add.sprite(400, 500, 'playerresponse');
-    this.playerResponse.anchor.setTo(0.5, 0.5);
-    this.playerResponse.fixedToCamera = true;
-    this.playerResponse.scale.setTo(1.5, 1.5);
-    this.playerResponse.visible = false;
-    this.playerLines = [''];
+		objs.foregroundLayer.resizeWorld();
 
-    // background sound, always going
-	var seagulls = game.add.audio('wavesandseagulls');
-	seagulls.loopFull(); // plays and loops
-	seagulls.volume = 0.5;
-	//seagulls.play();
+		objs.dialog = game.add.sprite(400, 125, "dialog");
+		objs.dialog.anchor.setTo(0.5, 0.5);
+		objs.dialog.fixedToCamera = true;
+		objs.dialog.scale.setTo(1.5, 1.2);
+		objs.dialog.visible = false;
+		objs.dialogLines = [''];
 
-	// footstep sound
-	this.footsteps = game.add.audio('footsteps');
-	this.footsteps.loop = true;
-	this.footsteps.play();
-	this.footsteps.pause();
+		objs.playerResponse = game.add.sprite(400, 500, 'playerresponse');
+		objs.playerResponse.anchor.setTo(0.5, 0.5);
+		objs.playerResponse.fixedToCamera = true;
+		objs.playerResponse.scale.setTo(1.5, 1.5);
+		objs.playerResponse.visible = false;
+		objs.playerLines = [''];
+
+		// background sound, always going
+		var seagulls = game.add.audio('wavesandseagulls');
+		seagulls.loopFull(); // plays and loops
+		seagulls.volume = 0.5;
+		//seagulls.play();
+
+		// footstep sound
+		objs.footsteps = game.add.audio('footsteps');
+		objs.footsteps.loop = true;
+		objs.footsteps.play();
+		objs.footsteps.pause();
+
+		return objs;
+	}
+
+	return createFunc;
 });

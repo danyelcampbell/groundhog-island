@@ -1,4 +1,5 @@
-(function() {
+window.export('PlaneInteraction', function() {
+	'use strict';
 	class PlaneInteraction{
 		constructor(gameObjects, game, flyAway) {
 			this.gameObjects = gameObjects;
@@ -179,10 +180,11 @@
 			setTimeout(function() {
 				// game over
 				// TODO: Add game over screen
-				self.game.state.start('MainGame');
+				self.game.state.start('Level1');
 				//window.location.reload();
 			}, 2000);
 		}
 	}
-	window.export('PlaneInteraction', PlaneInteraction);
-})();
+	
+	return PlaneInteraction;
+});

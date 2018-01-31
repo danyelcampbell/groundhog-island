@@ -1,6 +1,10 @@
-(function(){
+(function() {
+	'use strict';
 	var modules = {};
 	window.export = function(name, obj) {
+		if(typeof obj === 'function') {
+			obj = obj();
+		}
 		modules[name] = obj;
 	};
 	window.require = function(requires, func) {
