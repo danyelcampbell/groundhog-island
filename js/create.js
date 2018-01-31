@@ -84,4 +84,5 @@ window.export('create', function(game) {
 	this.footsteps.loop = true;
 	this.footsteps.play();
 	this.footsteps.pause();
+	
 });

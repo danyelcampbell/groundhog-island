@@ -49,8 +49,8 @@
 			}
 		}
 
-		beginInteraction() { //all this shit is the text
-			let self = this;
+		beginInteraction() { //all this shit is the text		
+			let self = this;							
 			setTimeout(function(){
 				self.gameObjects.dialog.visible = true;
 				self.gameObjects.dialogLines = ['[Radio garble]'];
