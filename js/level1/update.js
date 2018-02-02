@@ -3,7 +3,7 @@ window.export("update", function(){
 	function updateFunction(gameObjects, game) {
 		if(!gameObjects.planeMode) {
 			game.physics.arcade.collide(gameObjects.player, gameObjects.platforms, function(){
-				self.isOnGround = true;
+				gameObjects.isOnGround = true;
 			});
 
 			if(gameObjects.input.up.isDown) { // check for the up key being pressed
